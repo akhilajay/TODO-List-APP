@@ -1,0 +1,68 @@
+
+
+<div>
+	<button class="button" id="tskBtn" (click)="addTask()">add
+		task</button>
+</div>
+
+<!-- Task Create -->
+
+<div *ngIf="taskform">
+	<button class="button closebutton" id="closebtn" (click)="closeEvent()">close</button>
+	<br> <br>
+	<form #taskFrom=ngForm (ngSubmit)="creatTask(taskFrom.value)">
+		<label for="task">Task Name</label> <input type="text" id="name"
+			ngModel name="name" placeholder="Your task.."> <label
+			for="taskdescrition">Task Description</label> <input type="text"
+			id="description" name="description" ngModel
+			placeholder="Your description .."> <input type="submit"
+			value="Submit">
+	</form>
+</div>
+
+
+<!-- Task Update -->
+
+<div *ngIf="taskUpdateform">
+	<button class="button closebutton" id="closebtn" (click)="closeEvent()">close</button>
+	<br> <br>
+	<form #taskUpdateFrom=ngForm
+		(ngSubmit)="updateTask(taskUpdateFrom.value)">
+		<label for="task">Task Name</label>
+		 <input [readonly]="true" type="text" id="taskId" ngModel name="taskId" [(ngModel)]="taskId"> 
+		 <input type="text" id="name"
+			ngModel name="name" [(ngModel)]="name"> <label
+			for="taskdescrition">Task Description</label> <input type="text"
+			id="description" name="description" ngModel
+			[(ngModel)]="description"> <label for="taskdescrition">Task
+			Status</label> <input type="text" id="status" name="status" ngModel
+			[(ngModel)]="status"> <input type="submit" value="Submit">
+	</form>
+</div>
+
+<button class="button " id="closebtn" (click)="completedTask()">View
+	Completed Tasks</button>
+<button class="button " id="closebtn" (click)="pendingTask()">View
+	Pending Events</button>
+<button class="button " id="closebtn" (click)="findAllTask()">View
+	All</button>
+<table *ngIf="taskList">
+	<tr>
+		<th>TaskName</th>
+		<th>Description</th>
+		<th>Status</th>
+		<th>action</th>
+	</tr>
+	<tr *ngFor="let t of taskList">
+		<td>{{t.name}}</td>
+		<td>{{t.description}}</td>
+		<td>{{t.status}}</td>
+		<td width="20%" id="outer">
+			<button class="button  custombutton" id="editbtn"
+				(click)="editTaskWindow(t)">Edit</button>
+			<button class="button  custombutton" id="deletebtn"
+				(click)="deleteTask(t.taskId)">Delete</button>
+		</td>
+	</tr>
+
+</table>
