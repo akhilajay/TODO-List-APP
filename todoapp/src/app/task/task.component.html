@@ -28,8 +28,8 @@
 	<br> <br>
 	<form #taskUpdateFrom=ngForm
 		(ngSubmit)="updateTask(taskUpdateFrom.value)">
+		<input [readonly]="true" type="text" id="taskId" ngModel name="taskId" [(ngModel)]="taskId"> 
 		<label for="task">Task Name</label>
-		 <input [readonly]="true" type="text" id="taskId" ngModel name="taskId" [(ngModel)]="taskId"> 
 		 <input type="text" id="name"
 			ngModel name="name" [(ngModel)]="name"> <label
 			for="taskdescrition">Task Description</label> <input type="text"
